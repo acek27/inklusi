@@ -1,5 +1,5 @@
 /*=================================================================*/
-/*                      BASE                              
+/*                      BASE
 /*=================================================================*/
 body {
     color: $colordefault;
@@ -34,7 +34,7 @@ img {
 }
 
 /*=================================================================*/
-/*                      Preloader                              
+/*                      Preloader
 /*=================================================================*/
 #preloader {
     background: #FFF;
@@ -133,23 +133,23 @@ img {
 }
 
 $i: 0;
-@while $i < 19 {
-    $delay: $i * 1.86;
-    $delay-after: $i * 1.74;
-    @keyframes page-#{$i} {
-        #{4 + $delay}% {
-            transform: rotateZ(0deg) translateX(-18px);
-        }
-        #{13 + $delay-after}%,
-        #{54 + $delay}% {
-            transform: rotateZ(180deg) translateX(-18px);
-        }
-        #{63 + $delay-after}% {
-            transform: rotateZ(0deg) translateX(-18px);
-        }
-    }
-    $i: $i + 1;
-}
+//@while $i < 19 {
+//    $delay: $i * 1.86;
+//    $delay-after: $i * 1.74;
+//    @keyframes page-#{$i} {
+//        #{4 + $delay}% {
+//            transform: rotateZ(0deg) translateX(-18px);
+//        }
+//        #{13 + $delay-after}%,
+//        #{54 + $delay}% {
+//            transform: rotateZ(180deg) translateX(-18px);
+//        }
+//        #{63 + $delay-after}% {
+//            transform: rotateZ(0deg) translateX(-18px);
+//        }
+//    }
+//    $i: $i + 1;
+//}
 
 @keyframes left {
     4% {
@@ -221,7 +221,7 @@ $i: 0;
 }
 
 /*=================================================================*/
-/*                      TYPOGRAPHY                              
+/*                      TYPOGRAPHY
 /*=================================================================*/
 h1,h2,h3,h4,h5,h6 {
     color: $colordark;

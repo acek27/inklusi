@@ -18,7 +18,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')}}"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}"></script>
     <![endif]-->
-
+    @stack('css')
 </head>
 
 <body>
@@ -49,50 +49,27 @@
 
                 <div class="collapse navbar-collapse">
                     <!-- menus -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="index.html">Home</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.html">Magazine</a></li>
-                                <li><a class="dropdown-item" href="personal.html">Personal</a></li>
-                                <li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
-                                <li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
-                                <li><a class="dropdown-item" href="classic.html">Classic</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="category.html">Lifestyle</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="category.html">Inspiration</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="category.html">Category</a></li>
-                                <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-                                <li><a class="dropdown-item" href="blog-single-alt.html">Blog Single Alt</a></li>
-                                <li><a class="dropdown-item" href="about.html">About</a></li>
-                                <li><a class="dropdown-item" href="contact.html">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
+                    @auth
+                        @include('layouts._IsAdmin')
+                    @else
+                        @include('layouts._IsGuest')
+                    @endauth
                 </div>
 
                 <!-- header right section -->
                 <div class="header-right">
-                    <!-- social icons -->
-                    <ul class="social-icons list-unstyled list-inline mb-0">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
+                    @auth
+                        <div class="social-icons">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-responsive-nav-link :href="route('logout')"
+                                                       onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                    {{ __('Logout') }}
+                                </x-responsive-nav-link>
+                            </form>
+                        </div>
+                    @endauth
                     <!-- header buttons -->
                     <div class="header-buttons">
                         <button class="search icon-button">
@@ -106,7 +83,7 @@
             </div>
         </nav>
     </header>
-@yield('content')
+    @yield('content')
     <!-- footer -->
     <footer>
         <div class="container-xl">
@@ -147,11 +124,12 @@
     <!-- content -->
     <div class="search-content">
         <div class="text-center">
-            <h3 class="mb-4 mt-0">Press ESC to close</h3>
+            <h3 class="mb-4 mt-0">Tekan ESC untuk menutup</h3>
         </div>
         <!-- form -->
         <form class="d-flex search-form">
-            <input class="form-control me-2" type="search" placeholder="Search and press enter ..." aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Masukkan kata kunci pencarian ..."
+                   aria-label="Search">
             <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
         </form>
     </div>
@@ -170,29 +148,32 @@
     <!-- menu -->
     <nav>
         <ul class="vertical-menu">
-            <li class="active">
-                <a href="index.html">Home</a>
-                <ul class="submenu">
-                    <li><a href="index.html">Magazine</a></li>
-                    <li><a href="personal.html">Personal</a></li>
-                    <li><a href="personal-alt.html">Personal Alt</a></li>
-                    <li><a href="minimal.html">Minimal</a></li>
-                    <li><a href="classic.html">Classic</a></li>
-                </ul>
-            </li>
-            <li><a href="category.html">Lifestyle</a></li>
-            <li><a href="category.html">Inspiration</a></li>
             <li>
-                <a href="#">Pages</a>
+                <a class="nav-link" href="category.html">Beranda</a>
+            </li>
+            <li>
+                <a class="nav-link" href="category.html">Kegiatan</a>
+            </li>
+            <li>
+                <a class="nav-link" href="category.html">Regulasi</a>
+            </li>
+            <li>
+                <a href="#">Galeri</a>
                 <ul class="submenu">
-                    <li><a href="category.html">Category</a></li>
-                    <li><a href="blog-single.html">Blog Single</a></li>
-                    <li><a href="blog-single-alt.html">Blog Single Alt</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a class="dropdown-item" href="category.html">Foto</a></li>
+                    <li><a class="dropdown-item" href="blog-single.html">Video</a></li>
                 </ul>
             </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="#"><strong>Admin</strong></a>
+                <ul class="submenu">
+                    <li><a class="dropdown-item" href="category.html">Category</a></li>
+                    <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
+                    <li><a class="dropdown-item" href="blog-single-alt.html">Blog Single Alt</a></li>
+                    <li><a class="dropdown-item" href="about.html">About</a></li>
+                    <li><a class="dropdown-item" href="contact.html">Contact</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
@@ -214,6 +195,6 @@
 <script src="{{asset('js/slick.min.js')}}"></script>
 <script src="{{asset('js/jquery.sticky-sidebar.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
-
+@stack('js')
 </body>
 </html>
