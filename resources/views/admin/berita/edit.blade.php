@@ -26,7 +26,7 @@
                 <div class="col-lg-8">
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">Form Tambah Berita</h3>
+                        <h3 class="section-title">Form Edit Berita</h3>
                         <img src="{{asset('images/wave.svg')}}" class="wave" alt="wave"/>
                     </div>
                     <div class="comment-form rounded bordered padding-30">
@@ -39,7 +39,7 @@
                                 </ul>
                             </div>
                         @endif
-                        {!! Form::open(['url'=>route('berita.store'), 'files' => true]) !!}
+                        {!! Form::model($data,['url'=>route('berita.update', $data->id), 'files' => true , 'method' => 'put']) !!}
                         <div class="messages"></div>
                         @include('admin.berita._form')
                         <button type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary">

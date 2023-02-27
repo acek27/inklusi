@@ -2,6 +2,7 @@
 <html lang="en-US">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Katen - Minimal Blog & Magazine HTML Theme</title>
     <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -195,6 +196,13 @@
 <script src="{{asset('js/slick.min.js')}}"></script>
 <script src="{{asset('js/jquery.sticky-sidebar.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 @stack('js')
 </body>
 </html>

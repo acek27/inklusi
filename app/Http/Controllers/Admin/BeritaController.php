@@ -38,4 +38,35 @@ class BeritaController extends Controller
         $this->model::create($data);
         return redirect(route($this->route . '.index'));
     }
+
+    public function edit($id)
+    {
+        $data = $this->model::find($id);
+        $kategori = Kategori::all()->pluck('category_name', 'id');
+        return view($this->view . '.edit', compact('data', 'kategori'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $this->model::find($id);
+        $this->validate($request, $this->model::rulesEdit($data));
+        if ($request->file('path') == '') {
+            unset($data['path']);
+        } else {
+            $filename = uniqid() . '-' . uniqid() . '.' . $request->path->
+                getClientOriginalExtension();
+            $path = $request->path->storeAs('berita', $filename);
+            $request['path'] = $path;
+        }
+        $data->update($request->all());
+        return redirect(route($this->route . '.index'));
+    }
+
+    public function destroy($id)
+    {
+        $data = Berita::findOrFail($id);
+        $file = storage_path('app/' . $data->path);
+        unlink($file);
+        $this->model::destroy($id);
+    }
 }

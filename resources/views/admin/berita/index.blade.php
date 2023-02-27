@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @push('css')
     <link href="{{asset('assets/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/plugins/sweet-alert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css"/>
 @endpush
 @section('content')
     <section>
@@ -40,6 +41,7 @@
 @push('js')
     <script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweet-alert2/sweetalert2.min.js')}}"></script>
     <script !src="">
         $(document).ready(function () {
             var dt = $('#berita').DataTable({
@@ -51,8 +53,8 @@
                     name: 'title'
                 },
                     {
-                        data: 'category_id',
-                        name: 'category_id'
+                        data: 'kategori.category_name',
+                        name: 'kategori.category_name'
                     },
                     {
                         data: 'editor',
@@ -69,8 +71,8 @@
             });
             var del = function (id) {
                 swal({
-                    title: "Menghapus data pejabat",
-                    text: "Anda tidak dapat mengembalikan data pejabat yang sudah terhapus!",
+                    title: "Menghapus data berita",
+                    text: "Anda tidak dapat mengembalikan data yang sudah terhapus!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
