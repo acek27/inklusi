@@ -64,7 +64,7 @@ class BeritaController extends Controller
 
     public function destroy($id)
     {
-        $data = Berita::findOrFail($id);
+        $data = $this->model::findOrFail($id);
         $file = storage_path('app/' . $data->path);
         unlink($file);
         $this->model::destroy($id);

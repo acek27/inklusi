@@ -26,7 +26,7 @@
                 <div class="col-lg-8">
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">Form Tambah Berita</h3>
+                        <h3 class="section-title">Form Tambah Regulasi</h3>
                         <img src="{{asset('images/wave.svg')}}" class="wave" alt="wave"/>
                     </div>
                     <div class="comment-form rounded bordered padding-30">
@@ -73,18 +73,6 @@
                     'default': '',
                     'replace': '',
                 }
-            });
-            $('.summernote').summernote({
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['link', ['link']]
-                ]
             });
         });
     </script>

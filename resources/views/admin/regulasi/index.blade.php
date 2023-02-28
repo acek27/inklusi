@@ -91,7 +91,7 @@
                 }).then(
                     function (result) {
                         $.ajax({
-                            url: "{{ route('berita.index') }}/" + id,
+                            url: "{{ route('regulasi.index') }}/" + id,
                             method: "DELETE",
                         }).done(function (msg) {
                             console.log(msg)

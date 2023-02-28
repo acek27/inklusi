@@ -17,10 +17,20 @@ class Regulasi extends Model
     public static $rulesCreate = [
         'judul' => 'required',
         'jenis_id' => 'required',
-        'nomor' => 'required',
+        'nomor' => 'required|numeric',
         'path' => 'required',
         'tahun' => 'required'
     ];
+
+    public static function rulesEdit(Regulasi $data)
+    {
+        return [
+            'judul' => 'required',
+            'jenis_id' => 'required',
+            'nomor' => 'required|numeric',
+            'tahun' => 'required'
+        ];
+    }
 
     public function jenis()
     {

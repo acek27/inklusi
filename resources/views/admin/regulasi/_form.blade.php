@@ -45,7 +45,6 @@
           'class' => 'form-control dropify',
           'id' => 'path',
           'data-allowed-file-extensions' => 'pdf',
-          'required' => 'required'
       ]) }}
     </div>
 </div>

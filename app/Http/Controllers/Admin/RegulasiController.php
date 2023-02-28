@@ -28,6 +28,14 @@ class RegulasiController extends Controller
         return view($this->view . '.create', compact('jenis'));
     }
 
+    public function edit($id)
+    {
+
+        $data = $this->model::findOrFail($id);
+        $jenis = Jenis::all()->pluck('nama_jenis', 'id');
+        return view($this->view . '.edit', compact('jenis', 'data'));
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, $this->model::$rulesCreate);
@@ -37,6 +45,22 @@ class RegulasiController extends Controller
         $path = $request->path->storeAs('regulasi', $filename);
         $data['path'] = $path;
         $this->model::create($data);
+        return redirect(route($this->route . '.index'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $this->model::find($id);
+        $this->validate($request, $this->model::rulesEdit($data));
+        if ($request->file('path') == '') {
+            unset($data['path']);
+        } else {
+            $filename = uniqid() . '-' . uniqid() . '.' . $request->path->
+                getClientOriginalExtension();
+            $path = $request->path->storeAs('berita', $filename);
+            $request['path'] = $path;
+        }
+        $data->update($request->all());
         return redirect(route($this->route . '.index'));
     }
 
@@ -52,8 +76,7 @@ class RegulasiController extends Controller
             ]);
     }
 
-    public
-    function anyData()
+    public function anyData()
     {
         return DataTables::of($this->model::query())
             ->addColumn('unduh', function ($data) {
@@ -67,5 +90,12 @@ class RegulasiController extends Controller
             })
             ->rawColumns(['unduh', 'action'])
             ->make(true);
+    }
+    public function destroy($id)
+    {
+        $data = $this->model::findOrFail($id);
+        $file = storage_path('app/' . $data->path);
+        unlink($file);
+        $this->model::destroy($id);
     }
 }
