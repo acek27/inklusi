@@ -19,8 +19,8 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#">Regulasi</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="category.html">Lihat Regulasi</a></li>
-            <li><a class="dropdown-item" href="blog-single.html">Kelola Regulasi</a></li>
+            <li><a class="dropdown-item" href="#">Lihat Regulasi</a></li>
+            <li><a class="dropdown-item" href="{{route('regulasi.index')}}">Kelola Regulasi</a></li>
         </ul>
     </li>
     <li class="nav-item dropdown">
