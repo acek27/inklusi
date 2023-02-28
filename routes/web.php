@@ -20,14 +20,11 @@ use App\Http\Controllers\Admin\RegulasiController;
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/berita/data', [BeritaController::class, 'anyData'])->name('berita.data');
-    Route::resource('/berita', BeritaController::class);
+    Route::resource('/berita', BeritaController::class)->middleware('features:berita');
     Route::get('/regulasi/data', [RegulasiController::class, 'anyData'])->name('regulasi.data');
     Route::get('/regulasi/file/{id}', [RegulasiController::class, 'file'])->name('regulasi.file');
-    Route::resource('/regulasi', RegulasiController::class);
+    Route::resource('/regulasi', RegulasiController::class)->middleware('features:regulasi');
 });
 
 require __DIR__ . '/auth.php';
