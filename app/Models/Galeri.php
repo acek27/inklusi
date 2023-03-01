@@ -27,4 +27,9 @@ class Galeri extends Model
             'tempat' => 'required'
         ];
     }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class, 'galeri_id');
+    }
 }
