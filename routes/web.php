@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\BerandaController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\RegulasiController;
+use App\Http\Controllers\Admin\GaleriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/regulasi/data', [RegulasiController::class, 'anyData'])->name('regulasi.data');
     Route::get('/regulasi/file/{id}', [RegulasiController::class, 'file'])->name('regulasi.file');
     Route::resource('/regulasi', RegulasiController::class)->middleware('features:regulasi');
+    Route::get('/galeri/data', [GaleriController::class, 'anyData'])->name('galeri.data');
+    Route::resource('/galeri', GaleriController::class);
 });
 
 require __DIR__ . '/auth.php';

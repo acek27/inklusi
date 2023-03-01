@@ -27,7 +27,7 @@
         <a class="nav-link dropdown-toggle" href="#">Galeri</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="category.html">Lihat Galeri</a></li>
-            <li><a class="dropdown-item" href="blog-single.html">Kelola Galeri</a></li>
+            <li><a class="dropdown-item" href="{{route('galeri.index')}}">Kelola Galeri</a></li>
         </ul>
     </li>
 </ul>

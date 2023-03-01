@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @push('css')
-    <link href="{{asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/plugins/dropify/css/dropify.min.css')}}" rel="stylesheet">
     <!-- include libraries(jQuery, bootstrap) -->
@@ -8,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
     <style>
         .parsley-errors-list li.parsley-required {
             color: red;
@@ -57,11 +57,11 @@
     <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/id.min.js')}}"></script>
     <script type="module" src="{{asset('assets/plugins/parsleyjs/id.js')}}"></script>
     <script src="{{asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <script src="{{asset('assets/plugins/dropify/js/dropify.min.js')}}"></script>
     <!--Summernote js-->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
             $('form').parsley();
@@ -85,6 +85,9 @@
                     ['height', ['height']],
                     ['link', ['link']]
                 ]
+            });
+            $('#date').datepicker({
+                format: 'yyyy-mm-dd'
             });
         });
     </script>

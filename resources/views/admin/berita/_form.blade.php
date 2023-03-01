@@ -8,6 +8,14 @@
             'required' => 'required'
         ]) }}
     </div>
+    <div class="form-group">
+        {{ Form::label('date', 'Tanggal', ['class' => 'col-form-label']) }}
+        {{ Form::text('date',null,[
+            'class'=>'form-control',
+            'id' => 'date',
+            'required' => 'required'
+        ]) }}
+    </div>
     <div class="row">
         <div class="column col-md-6">
             <div class="form-group">

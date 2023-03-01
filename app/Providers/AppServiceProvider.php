@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
                 if ($user->hasPermission($permission->name)) {
                     return true;
                 } else {
-                    abort(403);
+                    abort(404);
                 }
             });
         }

@@ -10,22 +10,20 @@
                 <div class="col-lg-12">
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">Tabel Regulasi</h3>
+                        <h3 class="section-title">Tabel Galeri</h3>
                         <img src="{{asset('images/wave.svg')}}" class="wave" alt="wave"/>
                     </div>
 
                     <div class="padding-30 rounded bordered">
                         <div class="d-flex justify-content-start">
-                            <a href="{{route('regulasi.create')}}" class="btn btn-default mb-4">Data Baru</a>
+                            <a href="{{route('galeri.create')}}" class="btn btn-default mb-4">Data Baru</a>
                         </div>
                         <table class="table" id="berita">
                             <thead>
                             <tr>
-                                <th scope="col">Judul</th>
-                                <th scope="col">Jenis Regulasi</th>
-                                <th scope="col">Nomor</th>
-                                <th scope="col">Tahun</th>
-                                <th scope="col">Dokumen</th>
+                                <th scope="col">Nama Kegiatan</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Tempat</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                             </thead>
@@ -49,26 +47,18 @@
             var dt = $('#berita').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('regulasi.data') }}',
+                ajax: '{{ route('galeri.data') }}',
                 columns: [{
-                    data: 'judul',
-                    name: 'judul'
+                    data: 'nama_kegiatan',
+                    name: 'nama_kegiatan'
                 },
                     {
-                        data: 'jenis.nama_jenis',
-                        name: 'jenis.nama_jenis'
+                        data: 'date',
+                        name: 'date'
                     },
                     {
-                        data: 'nomor',
-                        name: 'nomor'
-                    },
-                    {
-                        data: 'tahun',
-                        name: 'tahun'
-                    },
-                    {
-                        data: 'unduh',
-                        name: 'unduh'
+                        data: 'tempat',
+                        name: 'tempat'
                     },
                     {
                         data: 'action',
@@ -91,7 +81,7 @@
                 }).then(
                     function (result) {
                         $.ajax({
-                            url: "{{ route('regulasi.index') }}/" + id,
+                            url: "{{ route('galeri.index') }}/" + id,
                             method: "DELETE",
                         }).done(function (msg) {
                             console.log(msg)
