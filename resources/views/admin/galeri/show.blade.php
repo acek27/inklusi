@@ -1,6 +1,9 @@
 @extends('layouts.master')
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
 @push('css')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}" type="text/css"/>
+    <link href="{{asset('assets/plugins/sweet-alert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css"/>
 @endpush
 @section('content')
     <section>
@@ -46,13 +49,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <h3>Gambar @if($data->media->count() != 0)
+                            <a href="#" class="btn btn-danger hapus-data">Reset</a>
+                        @endif</h3>
+                    <div class="masonry-thumbs grid-container grid-3" data-big="2" data-lightbox="gallery">
+                        @foreach($data->media as $image)
+                            <a class="grid-item" href="{{route('media.file', $image->id)}}"
+                               data-lightbox="gallery-item"><img
+                                    src="{{route('media.file', $image->id)}}" alt="Gallery Thumb 1"></a>
+                        @endforeach
+                    </div>
+
+                    <div class="divider"><i class="icon-circle"></i></div>
+                </div>
             </div>
         </div>
     </section>
 @endsection
 @push('js')
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script src="{{asset('assets/js/plugins.min.js')}}"></script>
+    <script src="{{asset('assets/js/functions.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweet-alert2/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+        });
         var accept = "image/*";
         Dropzone.autoDiscover = false;
         var fileList = new Array;
@@ -89,6 +111,35 @@
                 var _ref;
                 return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             }
+        })
+    </script>
+    <script !src="">
+        $(document).ready(function () {
+            $('body').on('click', '.hapus-data', function () {
+                swal({
+                    title: "Menghapus data berita",
+                    text: "Anda tidak dapat mengembalikan data yang sudah terhapus!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Iya!",
+                    cancelButtonText: "Tidak!",
+                }).then(
+                    function (result) {
+                        $.ajax({
+                            url: "{{ route('media.reset', $data->id) }}/",
+                            method: "DELETE",
+                        }).done(function (msg) {
+                            location.reload();
+                        }).fail(function (textStatus) {
+                            alert("Request failed: " + textStatus);
+                        });
+                    },
+                    function (dismiss) {
+                        // dismiss can be 'cancel', 'overlay', 'esc' or 'timer'
+                        // swal("Cancelled", "Data batal dihapus", "error");
+                    });
+            });
         })
     </script>
 @endpush

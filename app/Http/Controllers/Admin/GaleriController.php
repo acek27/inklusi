@@ -68,4 +68,27 @@ class GaleriController extends Controller
             Media::where('file', $id)->delete();
         }
     }
+
+    public function file($id)
+    {
+        $poster = Media::find($id);
+        $file = storage_path('app/' . $poster->file);
+        return response()
+            ->file($file, [
+                'Cache-Control' => 'no-cache, no-store, must-revalidate',
+                'Pragma' => 'no-cache',
+                'Expires' => '0'
+            ]);
+    }
+
+    public function reset($id)
+    {
+        $text = '';
+        $data = $this->model::findOrFail($id);
+        foreach ($data->media as $datum) {
+            $file = storage_path('app/' . $datum->file);
+            unlink($file);
+            Media::destroy($datum->id);
+        }
+    }
 }

@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/regulasi', RegulasiController::class);
     });
     Route::middleware('features:galeri')->group(function () {
+        Route::get('/media/file/{id}', [GaleriController::class, 'file'])->name('media.file');
+        Route::delete('/media/{id}/reset', [GaleriController::class, 'reset'])->name('media.reset');
         Route::post('/media/store/{id}', [GaleriController::class, 'storeMedia'])->name('media.store');
         Route::delete('/media/delete', [GaleriController::class, 'deleteMedia'])->name('media.delete');
         Route::get('/galeri/data', [GaleriController::class, 'anyData'])->name('galeri.data');
