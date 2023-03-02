@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Katen - Minimal Blog & Magazine HTML Theme</title>
+    <title>Temu Inklusi - Kabupaten Situbondo</title>
     <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}">
@@ -46,7 +46,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-xl">
                 <!-- site logo -->
-                <a class="navbar-brand" href="index.html"><img src="{{asset('images/logo.svg')}}" alt="logo"/></a>
+                <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('images/logo.svg')}}" alt="logo"/></a>
 
                 <div class="collapse navbar-collapse">
                     <!-- menus -->
@@ -153,6 +153,9 @@
                 <a class="nav-link" href="category.html">Beranda</a>
             </li>
             <li>
+                <a class="nav-link" href="category.html">Berita</a>
+            </li>
+            <li>
                 <a class="nav-link" href="category.html">Kegiatan</a>
             </li>
             <li>
@@ -163,16 +166,6 @@
                 <ul class="submenu">
                     <li><a class="dropdown-item" href="category.html">Foto</a></li>
                     <li><a class="dropdown-item" href="blog-single.html">Video</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><strong>Admin</strong></a>
-                <ul class="submenu">
-                    <li><a class="dropdown-item" href="category.html">Category</a></li>
-                    <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-                    <li><a class="dropdown-item" href="blog-single-alt.html">Blog Single Alt</a></li>
-                    <li><a class="dropdown-item" href="about.html">About</a></li>
-                    <li><a class="dropdown-item" href="contact.html">Contact</a></li>
                 </ul>
             </li>
         </ul>

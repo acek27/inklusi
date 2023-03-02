@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Galeri;
 use App\Models\Media;
 use App\Traits\Resource;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -31,6 +32,9 @@ class GaleriController extends Controller
     public function anyData()
     {
         return DataTables::of($this->model::query())
+            ->addColumn('date', function ($data) {
+                return Carbon::parse($data->date)->isoFormat('D MMMM Y');
+            })
             ->addColumn('action', function ($data) {
                 $del = '<a href="#" data-id="' . $data->id . '" class="btn btn-danger hapus-data"><i class="fa fa-times"></i></a>';
                 $show = '<a href="' . route($this->route . '.show', $data->id) . '" class="btn btn-success"><i class="fa fa-arrow-right"></i></a>';

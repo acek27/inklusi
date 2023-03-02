@@ -6,6 +6,8 @@ use App\Http\Controllers\Guest\BerandaController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\RegulasiController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\KegiatanController;
+use App\Http\Controllers\Admin\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/media/delete', [GaleriController::class, 'deleteMedia'])->name('media.delete');
         Route::get('/galeri/data', [GaleriController::class, 'anyData'])->name('galeri.data');
         Route::resource('/galeri', GaleriController::class);
+        Route::get('/video/data', [VideoController::class, 'anyData'])->name('video.data');
+        Route::resource('/video', VideoController::class);
+    });
+
+    Route::middleware('features:kegiatan')->group(function () {
+        Route::get('/kegiatan/data', [KegiatanController::class, 'anyData'])->name('kegiatan.data');
+        Route::get('/kegiatan/file/{id}', [KegiatanController::class, 'file'])->name('kegiatan.file');
+        Route::resource('/kegiatan', KegiatanController::class);
     });
 });
 

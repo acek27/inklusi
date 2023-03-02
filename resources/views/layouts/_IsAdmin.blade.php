@@ -13,7 +13,7 @@
         <a class="nav-link dropdown-toggle" href="#">Kegiatan</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="category.html">Lihat Kegiatan</a></li>
-            <li><a class="dropdown-item" href="blog-single.html">Kelola Kegiatan</a></li>
+            <li><a class="dropdown-item" href="{{route('kegiatan.index')}}">Kelola Kegiatan</a></li>
         </ul>
     </li>
     <li class="nav-item dropdown">
@@ -27,7 +27,8 @@
         <a class="nav-link dropdown-toggle" href="#">Galeri</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="category.html">Lihat Galeri</a></li>
-            <li><a class="dropdown-item" href="{{route('galeri.index')}}">Kelola Galeri</a></li>
+            <li><a class="dropdown-item" href="{{route('galeri.index')}}">Kelola Gambar</a></li>
+            <li><a class="dropdown-item" href="{{route('video.index')}}">Kelola Video</a></li>
         </ul>
     </li>
 </ul>
