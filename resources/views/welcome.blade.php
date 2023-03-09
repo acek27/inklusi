@@ -411,7 +411,7 @@
                                 <!-- post large -->
                                 <div class="post">
                                     <div class="thumb rounded">
-                                        <a href="category.html" class="category-badge position-absolute">Inspiration</a>
+                                        <a href="#" class="category-badge position-absolute">{{$berita->first()}}</a>
                                         <span class="post-format">
 											<i class="icon-earphones"></i>
 										</span>

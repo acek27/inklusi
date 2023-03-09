@@ -46,7 +46,8 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-xl">
                 <!-- site logo -->
-                <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('images/logo.svg')}}" alt="logo"/></a>
+                <a class="navbar-brand" href="{{route('beranda')}}"><img src="{{asset('logo.png')}}"
+                                                                         style="height: 80px" alt="logo"/></a>
 
                 <div class="collapse navbar-collapse">
                     <!-- menus -->
@@ -150,7 +151,7 @@
     <nav>
         <ul class="vertical-menu">
             <li>
-                <a class="nav-link" href="category.html">Beranda</a>
+                <a class="nav-link" href="{{route('beranda')}}">Beranda</a>
             </li>
             <li>
                 <a class="nav-link" href="category.html">Berita</a>
